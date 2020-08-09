@@ -12,3 +12,7 @@ const val MATCH_MAKING_DB = "MATCH_MAKING_DB"
 const val UNKNOWN = "unknown"
 const val BLANK = ""
 const val CANT_UPDATE = "Sorry, something does not seem right, please try again later!"
+const val LANDING_HEADER = "Here are your matches for today"
+const val ACCEPTED = "L I K E D ! "
+const val REJECTED = "R E J E C T E D ! "
+

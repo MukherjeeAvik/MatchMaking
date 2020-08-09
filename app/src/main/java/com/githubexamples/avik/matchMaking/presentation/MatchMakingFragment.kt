@@ -6,16 +6,16 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.githubexamples.avik.matchMaking.R
 import com.githubexamples.avik.matchMaking.base.BaseFragment
 import com.githubexamples.avik.matchMaking.base.BaseViewHolder
 import com.githubexamples.avik.matchMaking.base.ViewModelProviderFactory
 import com.githubexamples.avik.matchMaking.domain.entitity.EachMatchCard
-import com.githubexamples.avik.matchMaking.utils.hide
-import com.githubexamples.avik.matchMaking.utils.show
-import com.githubexamples.avik.matchMaking.utils.showAsPer
+import com.githubexamples.avik.matchMaking.utils.*
 import kotlinx.android.synthetic.main.fragment_match_making.*
 import javax.inject.Inject
+
 
 class MatchMakingFragment : BaseFragment() {
 
@@ -46,7 +46,7 @@ class MatchMakingFragment : BaseFragment() {
 
     override fun getLifeCycleObserver(): LifecycleObserver = mainViewModel
     override fun reloadPage() {
-
+        mainViewModel.getRandomListOfPeople()
     }
 
 
@@ -54,12 +54,17 @@ class MatchMakingFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         mainViewModel =
             ViewModelProvider(requireActivity(), providerFactory).get(MainViewModel::class.java)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeChanges()
+        pageHeader.text = LANDING_HEADER
         mainViewModel.getRandomListOfPeople()
+        retryButton.setOnClickListener {
+            reloadPage()
+        }
     }
 
     private fun observeChanges() {
@@ -83,6 +88,7 @@ class MatchMakingFragment : BaseFragment() {
                     }
                 }
                 is MatchMakingViewStates.ContentUpdated -> {
+                    progressBar.showAsPer(viewStates.isLoading)
                     if (viewStates.hasError) {
                         notifyUserThroughMessage(viewStates.errorMessage)
                     } else {
@@ -114,29 +120,26 @@ class MatchMakingFragment : BaseFragment() {
 
         })
         adapter.addAll(listOfCountries)
+        val layoutManager = PeekingLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        matchMakingRv.layoutManager = layoutManager
 
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(matchMakingRv)
 
         matchMakingRv.setHasFixedSize(true)
 
-//        matchMakingRv.layoutManager =  object : LinearLayoutManager(requireContext()) {
-//            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-//                lp?.height = height/2
-//                lp?.width = width/2
-//                return true
-//            }
-//        }
         matchMakingRv.adapter = adapter
 
     }
 
     private fun hideErrors() {
+        pageHeader.show()
         noContentAvailable.hide()
         retryButton.hide()
     }
 
     private fun showErrors(errorMessage: String) {
+        pageHeader.hide()
         noContentAvailable.show()
         noContentAvailable.text = errorMessage
         retryButton.show()
