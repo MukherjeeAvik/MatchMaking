@@ -1,23 +1,36 @@
 package com.githubexamples.avik.matchMaking.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModelProvider
 import com.githubexamples.avik.matchMaking.R
 import com.githubexamples.avik.matchMaking.base.BaseActivity
+import com.githubexamples.avik.matchMaking.base.ViewModelProviderFactory
+import com.githubexamples.avik.matchMaking.navigation.MainNavigator
+import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
+    @Inject
+    lateinit var providerFactory: ViewModelProviderFactory
+
+    @Inject
+    lateinit var mainNavigator: MainNavigator
+
+    private lateinit var mainViewModel: MainViewModel
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mainViewModel = ViewModelProvider(this, providerFactory).get(MainViewModel::class.java)
+        mainNavigator.openMatchMakingPage(R.id.fragmentContainer, true)
+
+    }
 
     override fun getLayoutId() = R.layout.activity_main
 
-    override fun getLifeCycleObserver(): LifecycleObserver {
-        TODO("Not yet implemented")
-    }
+    override fun getLifeCycleObserver() = mainViewModel
 
-    override fun getParentLayForSnackBar(): View? {
-        TODO("Not yet implemented")
-    }
+    override fun getParentLayForSnackBar() = rootLay
 
 }

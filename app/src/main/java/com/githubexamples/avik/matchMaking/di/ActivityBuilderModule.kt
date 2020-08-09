@@ -1,5 +1,7 @@
 package com.githubexamples.avik.matchMaking.di
 
+import com.githubExamples.mvvm.architecture.ui.countryList.MatchMakingFragmentModule
+import com.githubExamples.mvvm.architecture.ui.countryList.MatchMakingFragmentProvider
 import com.githubexamples.avik.matchMaking.di.modules.MainModule
 import com.githubexamples.avik.matchMaking.di.modules.MainViewModelModule
 import com.githubexamples.avik.matchMaking.di.scopes.MainScope
@@ -13,7 +15,10 @@ abstract class ActivityBuilderModule {
     @MainScope
     @ContributesAndroidInjector(
         modules = [MainModule::class,
-            MainViewModelModule::class]
+            MainViewModelModule::class,
+            MatchMakingFragmentModule::class,
+            MatchMakingFragmentProvider::class
+        ]
     )
     abstract fun bindMainActivity(): MainActivity
 

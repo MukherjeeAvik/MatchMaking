@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.githubexamples.avik.matchMaking.data.entities.RandomPeopleItemDbResponse
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -13,19 +14,19 @@ import io.reactivex.Single
 interface MatchMakingDao{
 
     @Query("SELECT * FROM MATCH_MAKING")
-    fun getAllPeople(): Observable<List<RandomPeopleItemDbResponse>>
+    fun getAllPeople(): Single<List<RandomPeopleItemDbResponse>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveAllPeople(movies: List<RandomPeopleItemDbResponse>)
+    fun saveAllPeople(movies: List<RandomPeopleItemDbResponse>):Completable
 
     @Query("DELETE FROM MATCH_MAKING")
-    fun clearAllPeople()
+    fun clearAllPeople():Completable
 
     @Query("UPDATE MATCH_MAKING SET isInterested = 1 , hasDeclined = 0 WHERE userId = :userId")
-    fun markAsAccepted(userId:String)
+    fun markAsAccepted(userId:String):Completable
 
     @Query("UPDATE MATCH_MAKING SET isInterested = 0 , hasDeclined = 1 WHERE userId = :userId")
-    fun markAsRejected(userId:String)
+    fun markAsRejected(userId:String) :Completable
 
 
 }

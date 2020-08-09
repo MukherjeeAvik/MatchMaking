@@ -11,6 +11,7 @@ data class RandomPeopleItemDbResponse(
     val userId:String,
     val name: String,
     val age: String,
+    val profilePic:String,
     val city: String,
     val state: String,
     val country: String,

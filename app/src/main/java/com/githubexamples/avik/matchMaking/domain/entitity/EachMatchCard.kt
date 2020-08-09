@@ -3,6 +3,7 @@ package com.githubexamples.avik.matchMaking.domain.entitity
 data class EachMatchCard(
     val id:String,
     val name: String,
+    val profilePic:String,
     val age: String,
     val city: String,
     val state: String,

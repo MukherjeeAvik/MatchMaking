@@ -14,6 +14,8 @@ import com.githubexamples.avik.matchMaking.domain.MatchMakingApiSource
 import com.githubexamples.avik.matchMaking.domain.MatchMakingLocalSource
 import com.githubexamples.avik.matchMaking.domain.MatchMakingRepository
 import com.githubexamples.avik.matchMaking.utils.MATCH_MAKING_DB
+import com.githubexamples.avik.matchMaking.utils.rx.AppSchedulerProvider
+import com.githubexamples.avik.matchMaking.utils.rx.SchedulerProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -37,13 +39,16 @@ class DataModule {
         apiSource: MatchMakingApiSource,
         localSource: MatchMakingLocalSource,
         apiDataToEntityMapper: ApiDataToEntityMapper,
-        dbDataToEntityMapper: DbDataToEntityMapper
+        dbDataToEntityMapper: DbDataToEntityMapper,
+        schedulers: SchedulerProvider
     ): MatchMakingRepository {
         return MatchMakingRepositoryImpl(
             apiSource,
             localSource,
             apiDataToEntityMapper,
-            dbDataToEntityMapper
+            dbDataToEntityMapper,
+            schedulers
+
         )
     }
 

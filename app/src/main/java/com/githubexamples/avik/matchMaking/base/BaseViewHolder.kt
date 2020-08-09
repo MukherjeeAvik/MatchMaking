@@ -15,7 +15,8 @@ abstract class BaseViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemV
 
 
     interface ItemClickedCallback<T> {
-        fun onItemClicked(t: T)
+        fun onAccepted(t:T)
+        fun onRejected(t:T)
     }
 
 
