@@ -59,10 +59,10 @@ data class Info(
 	val seed: String? = null,
 
 	@field:SerializedName("page")
-	val page: Int? = null,
+	val page: String? = null,
 
 	@field:SerializedName("results")
-	val results: Int? = null,
+	val results: String? = null,
 
 	@field:SerializedName("version")
 	val version: String? = null
@@ -95,7 +95,7 @@ data class Location(
 	val timezone: Timezone? = null,
 
 	@field:SerializedName("postcode")
-	val postcode: Int? = null,
+	val postcode: String? = null,
 
 	@field:SerializedName("coordinates")
 	val coordinates: Coordinates? = null,
@@ -158,7 +158,7 @@ data class ResultsItem(
 data class Street(
 
 	@field:SerializedName("number")
-	val number: Int? = null,
+	val number: String? = null,
 
 	@field:SerializedName("name")
 	val name: String? = null
@@ -170,7 +170,7 @@ data class Registered(
 	val date: String? = null,
 
 	@field:SerializedName("age")
-	val age: Int? = null
+	val age: String? = null
 )
 
 data class Timezone(
@@ -188,5 +188,5 @@ data class Dob(
 	val date: String? = null,
 
 	@field:SerializedName("age")
-	val age: Int? = null
+	val age: String? = null
 )

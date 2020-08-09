@@ -11,6 +11,7 @@ class DbDataToEntityMapper @Inject constructor(): Mapper< RandomPeopleItemDbResp
         return EachMatchCard(
             id = from.userId,
             name = from.name,
+            profilePic = from.profilePic,
             age = from.age,
             city = from.city,
             state = from.state,

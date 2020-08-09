@@ -12,6 +12,7 @@ class EntityToDbDataMapper @Inject constructor() :
         return RandomPeopleItemDbResponse(
             userId = from.login?.uuid ?: UNKNOWN,
             name = from.name?.first ?: "" + " " + from.name?.last ?: "",
+            profilePic = from.picture?.large?: UNKNOWN,
             age = from.dob?.age?.toString() ?: "",
             city = from.location?.city ?: "",
             state = from.location?.state ?: "",
