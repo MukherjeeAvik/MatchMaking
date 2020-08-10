@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/colorPrimaryDark">
 
     <TextView
@@ -34,6 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textAppearance="@style/retryButtonText"
+        android:text="@string/retry"
         app:layout_constraintTop_toBottomOf="@+id/noContentAvailable"/>
 
     <androidx.recyclerview.widget.RecyclerView
