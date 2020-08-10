@@ -3,11 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardParent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:cardCornerRadius="8dp"
-    android:elevation="8dp"
-    android:layout_margin="4dp">
+    style="@style/match_card_style">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,15 +11,11 @@
 
         <ImageView
             android:id="@+id/profilePicIv"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:padding="2dp"
-            android:background="@drawable/profile_pic_bg"
+            style="@style/profile_pic_style"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -34,34 +26,28 @@
 
         <TextView
             android:id="@+id/profileNameTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/userNameStyle"
+            app:layout_constraintBottom_toTopOf="@+id/basicInfoOne"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profilePicIv"
-            app:layout_constraintBottom_toTopOf="@+id/basicInfoOne"/>
+            app:layout_constraintTop_toBottomOf="@+id/profilePicIv" />
 
         <TextView
             android:id="@+id/basicInfoOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/basicInfoStyle"
+            app:layout_constraintBottom_toTopOf="@+id/basicInfoTwo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileNameTv"
-            app:layout_constraintBottom_toTopOf="@+id/basicInfoTwo"/>
+            app:layout_constraintTop_toBottomOf="@+id/profileNameTv" />
 
         <TextView
             android:id="@+id/basicInfoTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/basicInfoStyle"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/standard_bottom_margin"
+            app:layout_constraintBottom_toBottomOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/basicInfoOne"
-            app:layout_constraintBottom_toBottomOf="@id/guideline1"/>
+            app:layout_constraintTop_toBottomOf="@+id/basicInfoOne" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -70,13 +56,10 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.8" />
 
-
         <ImageView
             android:id="@+id/rejectButton"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/close"
-            android:layout_marginBottom="28dp"
+            style="@style/reject_button_style"
+            android:layout_marginBottom="@dimen/ending_bottom_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/acceptButton"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,10 +67,8 @@
 
         <ImageView
             android:id="@+id/acceptButton"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/tick"
-            android:layout_marginBottom="28dp"
+            style="@style/accept_button_style"
+            android:layout_marginBottom="@dimen/ending_bottom_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rejectButton"
@@ -95,11 +76,10 @@
 
         <TextView
             android:id="@+id/statusNowTxt"
+            style="@style/currentStateStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/currentStateStyle"
-            android:rotation="-30"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="@dimen/ending_bottom_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline1" />

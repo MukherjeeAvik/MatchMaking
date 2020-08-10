@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.lifecycle.LifecycleObserver
 import com.githubexamples.avik.matchMaking.R
-import com.githubexamples.avik.matchMaking.utils.OFFLINE
+import com.githubexamples.avik.matchMaking.utils.PLEASE_NOTE
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -51,7 +51,7 @@ abstract class BaseActivity : DaggerAppCompatActivity(), BaseFragment.Callback {
 
     protected fun showError(rootView: View, message: String) {
         val snackbarText = SpannableStringBuilder()
-        snackbarText.bold { appendln(OFFLINE) }
+        snackbarText.bold { appendln(PLEASE_NOTE) }
         snackbarText.append(message)
 
         snackbar = Snackbar.make(rootView, snackbarText, Snackbar.LENGTH_INDEFINITE).apply {
