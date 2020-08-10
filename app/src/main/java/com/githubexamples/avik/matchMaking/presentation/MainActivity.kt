@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(this, providerFactory).get(MainViewModel::class.java)
-        mainNavigator.openMatchMakingPage(R.id.fragmentContainer, true)
+        mainNavigator.openMatchMakingPage(R.id.fragmentContainer, false)
 
     }
 
